@@ -1,0 +1,36 @@
+IAM LAB 
+# Hands-On Identity and Access Management (IAM) Lab
+
+I built a local security lab using Docker and Keycloak to simulate how a real company protects user accounts and enforces strong login security.
+
+## 🛠️ Tools I Used
+* Mac (Host) running a VirtualBox Linux VM
+* **Docker** (To run Keycloak)
+* **Keycloak** (Enterprise Identity & Access platform)
+
+---
+
+## 🔒 Security Features I Configured
+
+### 1. Strong Passwords
+I configured Keycloak to reject weak passwords. All users are forced to create a password that is at least 12 characters long and contains uppercase letters, numbers, and special characters.
+
+### 2. User Roles & Permissions (Least Privilege)
+I created a test user account and placed them into an **Audit Team** group. I set up permissions so that anyone in this group can only view data but cannot change any system settings. This ensures users only have the absolute minimum access they need to do their job.
+
+### 3. Two-Factor Authentication (MFA / 2FA)
+I turned on Multi-Factor Authentication. When a user logs in, Keycloak intercepts them and demands they scan a **QR Code** using an authenticator app (like Google Authenticator) before letting them see their account.
+
+---
+
+## 📸 Screenshots & Proof
+
+### My 2FA QR Code Screen
+
+
+---
+
+## ⚙️ How to Run This Project
+To start the Keycloak container:
+```bash
+sudo docker run -d --name my-iam-sandbox -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=your_secure_password quay.io/keycloak/keycloak:latest start-dev
